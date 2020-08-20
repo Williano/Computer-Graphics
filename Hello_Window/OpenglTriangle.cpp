@@ -50,7 +50,7 @@ int main() {
 	}
 
 	// Setup the size of the window
-	glViewport(0, 0, 800, 600);
+	glViewport(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
 
 
 
