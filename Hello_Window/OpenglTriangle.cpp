@@ -8,6 +8,9 @@
 	/* Callback function to resize window when main changes */
 void framebufferSizeCallback(GLFWwindow* window, int width, int height);
 
+    /* Callback for processing user inputs*/
+void processInput(GLFWwindow* window);
+
 
 // Settings
 const unsigned int SCREEN_WIDTH = 800;
@@ -57,6 +60,9 @@ int main() {
 	// Render to the window as long as the 
 	while (!glfwWindowShouldClose(window)) {
 		
+		// input
+		processInput(window);
+
 		glfwSwapBuffers(window);
 		glfwPollEvents();
 	}
@@ -72,4 +78,12 @@ int main() {
 void framebufferSizeCallback(GLFWwindow* window, int width, int height)
 {
 	glViewport(0, 0, width, height);
+}
+
+void processInput(GLFWwindow* window)
+{
+	if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
+	{
+		glfwSetWindowShouldClose(window, true);
+	}
 }
