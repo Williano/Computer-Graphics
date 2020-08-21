@@ -6,7 +6,7 @@ const char* vertexShaderSource = "#version 460 core\n"
 "}\0";
 
 
-const char* fragmentShaderSource = "#version 330 core\n"
+const char* fragmentShaderSource = "#version 460 core\n"
 "out vec4 FragColor;\n"
 "void main()\n"
 "{\n"
