@@ -120,6 +120,14 @@ int main() {
 		std::cout << "ERROR::SHADER::PROGRAM::COMPILATION_FAILED\n" << infoLog << std::endl;
 	}
 
+	// Use the shader for rendering
+	glUseProgram(shaderProgram);
+
+
+	// Specify the attributes of the vertex
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
+	glEnableVertexAttribArray(0);
+
 	while (!glfwWindowShouldClose(window))
 	{
 		//input
@@ -134,6 +142,10 @@ int main() {
 		glfwPollEvents();
 	}
 
+
+	// Delete shaders
+	glDeleteShader(vertexShader);
+	glDeleteShader(fragmentShader);
 
 	glfwTerminate();
 
