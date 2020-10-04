@@ -45,5 +45,7 @@
   <ItemGroup>
     <None Include="pbr.vs" />
     <None Include="pbr.fs" />
+    <None Include="lighting.pbr.vs" />
+    <None Include="lighting.pbr.fs" />
   </ItemGroup>
 </Project>
