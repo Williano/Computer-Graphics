@@ -144,6 +144,8 @@ int main(void)
 		1, 2, 3
 	};
 
+
+
 	// Vertex Array Object
 	unsigned int VAO;
 	glGenVertexArrays(1, &VAO);
@@ -158,6 +160,13 @@ int main(void)
 	// Interpret the vertex data to OpenGL before rendering
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
 	glEnableVertexAttribArray(0);
+
+	// Element Buffer Object
+	unsigned int EBO;
+	glGenBuffers(1, &EBO);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(int) * 6, indices, GL_STATIC_DRAW);
+
 
 
 	// Unselect the Vertex Array Object
