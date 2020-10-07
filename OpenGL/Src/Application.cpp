@@ -73,13 +73,16 @@ int main(void)
 		 0.0f,  0.5f, 0.0f
 	};
 
+	// Vertex Buffer Object
 	unsigned int VBO;
 	glGenBuffers(1, &VBO);
 	glBindBuffer(GL_ARRAY_BUFFER, VBO);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(float) * 9, vertices, GL_STATIC_DRAW);
 
+	// Vertex Shader
 	unsigned int vertexShader = glCreateShader(GL_VERTEX_SHADER);
 	glShaderSource(vertexShader, 1, &vertexShaderSource, NULL);
+	glCompileShader(vertexShader);
 
 	/* Loop until the user closes the window */
 	while (!glfwWindowShouldClose(window))
