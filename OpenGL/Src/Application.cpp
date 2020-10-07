@@ -86,6 +86,10 @@ int main(void)
 	glBindBuffer(GL_ARRAY_BUFFER, VBO);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(float) * 9, vertices, GL_STATIC_DRAW);
 
+	// Interpret the vertex data to OpenGL before rendering
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
+	glEnableVertexAttribArray(0);
+
 	// Vertex Shader
 	unsigned int vertexShader = glCreateShader(GL_VERTEX_SHADER);
 	glShaderSource(vertexShader, 1, &vertexShaderSource, NULL);
@@ -133,6 +137,7 @@ int main(void)
 		std::cout << "ERROR::PROGRAM::LINKING FAILED\n" << infoLog << std::endl;
 	}
 
+	glUseProgram(shaderProgram);
 
 	/* Loop until the user closes the window */
 	while (!glfwWindowShouldClose(window))
