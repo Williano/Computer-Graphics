@@ -154,6 +154,9 @@ int main(void)
 	}
 
 
+	glDeleteShader(vertexShader);
+	glDeleteShader(fragmentShader);
+
 
 	glfwTerminate();
 	return 0;
