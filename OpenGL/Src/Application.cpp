@@ -1,24 +1,38 @@
-#include <GLEW/glew.h> 
+#include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
 #include <iostream>
 
+
+/*** Constants **/
+const unsigned int SCREEN_WIDTH = 800;
+const unsigned int SCREEN_HEIGHT = 600;
+
+
+/*** Constants **/
+
+
 int main(void)
 {
-	GLFWwindow* window;
 
 	/* Initialize the library */
 	if (!glfwInit())
 	{
+		std::cout << "Failed to initialize GLFW." << std::endl;
 		return -1;
 	}
 
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+
 
 	/* Create a windowed mode window and its OpenGL context */
-	window = glfwCreateWindow(640, 480, "Hello World", NULL, NULL);
+	GLFWwindow* window = glfwCreateWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "OpenGL", NULL, NULL);
 
-	if (!window)
+	if (window == NULL)
 	{
+		std::cout << "Failed to create GLFW window." << std::endl;
 		glfwTerminate();
 		return -1;
 	}
@@ -27,23 +41,17 @@ int main(void)
 	glfwMakeContextCurrent(window);
 
 	/* Load OpenGL function pointers using GLEW */
-	if (glewInit() != GLEW_OK)
+	if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
 	{
-		std::cout << "Error" << std::endl;
+		std::cout << "Failed to initialize GLAD" << std::endl;
+		return -1;
 	}
-
 
 	/* Loop until the user closes the window */
 	while (!glfwWindowShouldClose(window))
 	{
 		/* Render here */
 		glClear(GL_COLOR_BUFFER_BIT);
-
-		glBegin(GL_TRIANGLES);
-		glVertex2f(-0.5f, -0.5f);
-		glVertex2f(0.0f, 0.5f);
-		glVertex2f(0.5f, -0.5f);
-		glEnd();
 
 		/* Swap front and back buffers */
 		glfwSwapBuffers(window);
