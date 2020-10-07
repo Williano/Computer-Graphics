@@ -57,6 +57,14 @@ int main(void)
 		return -1;
 	}
 
+
+	// Input Vertices
+	float vertices[9] = {
+		-0.5f, -0.5f, 0.0f,
+		 0.5f, -0.5f, 0.0f,
+		 0.0f,  0.5f, 0.0f
+	};
+
 	/* Loop until the user closes the window */
 	while (!glfwWindowShouldClose(window))
 	{
