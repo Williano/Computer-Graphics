@@ -126,12 +126,23 @@ int main(void)
 
 
 	// Input Vertices
-	float vertices[9] = {
-		-0.5f, -0.5f, 0.0f,
-		 0.5f, -0.5f, 0.0f,
-		 0.0f,  0.5f, 0.0f
+	//float vertices[9] = {
+	//	-0.5f, -0.5f, 0.0f,
+	//	 0.5f, -0.5f, 0.0f,
+	//	 0.0f,  0.5f, 0.0f
+	//};
+
+	float vertices[12] = {
+		0.5f, 0.5f, 0.0f, // Top Right
+		0.5f,-0.5f, 0.0f, // Bottom right
+	   -0.5f,-0.5f, 0.0f, // Bottom left
+	   -0.5f, 0.5f, 0.0f  // Top Left
 	};
 
+	unsigned int indices[6] = {
+		0, 2, 3,
+		1, 2, 3
+	};
 
 	// Vertex Array Object
 	unsigned int VAO;
