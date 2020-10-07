@@ -153,12 +153,14 @@ int main(void)
 		glfwPollEvents();
 	}
 
-
+	// Delete Shaders
 	glDeleteShader(vertexShader);
 	glDeleteShader(fragmentShader);
 
 
+	// Close Context
 	glfwTerminate();
+
 	return 0;
 }
 
