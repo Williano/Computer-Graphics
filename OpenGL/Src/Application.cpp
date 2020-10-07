@@ -84,6 +84,18 @@ int main(void)
 	glShaderSource(vertexShader, 1, &vertexShaderSource, NULL);
 	glCompileShader(vertexShader);
 
+	int success;
+	char infoLog[512];
+
+	glGetShaderiv(vertexShader, GL_COMPILE_STATUS, &success);
+	if (!success)
+	{
+		glGetShaderInfoLog(vertexShader, 512, NULL, infoLog);
+		std::cout << "ERROR::VERTEX::COMPILATION_FAILED\n" << infoLog << std::endl;
+	}
+
+
+
 	/* Loop until the user closes the window */
 	while (!glfwWindowShouldClose(window))
 	{
