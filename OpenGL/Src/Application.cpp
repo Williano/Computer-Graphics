@@ -117,6 +117,21 @@ int main(void)
 		std::cout << "ERROR::FRAGMENT::COMPILATION_FAILED\n" << infoLog << std::endl;
 	}
 
+	// Shader program
+	unsigned int shaderProgram = glCreateProgram();
+	glAttachShader(shaderProgram, vertexShader);
+	glAttachShader(shaderProgram, fragmentShader);
+	glLinkProgram(shaderProgram);
+
+	int success;
+	char infoLog[512];
+
+	glGetProgramiv(shaderProgram, GL_LINK_STATUS, &success);
+	if (!success)
+	{
+		glGetProgramInfoLog(shaderProgram, 512, NULL, infoLog);
+		std::cout << "ERROR::PROGRAM::LINKING FAILED\n" << infoLog << std::endl;
+	}
 
 
 	/* Loop until the user closes the window */
@@ -137,6 +152,8 @@ int main(void)
 		/* Poll for and process events */
 		glfwPollEvents();
 	}
+
+
 
 	glfwTerminate();
 	return 0;
