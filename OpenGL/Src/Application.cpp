@@ -16,6 +16,7 @@ const char* vertexShaderSource =
 "gl_Position = vec4(aPos.x, aPos.y, aPos.z, 1.0);\n"
 "}\n";
 
+
 /*** Constants **/
 void framebufferSizeCallback(GLFWwindow* window, int width, int height);
 void processInput(GLFWwindow* window);
@@ -77,6 +78,8 @@ int main(void)
 	glBindBuffer(GL_ARRAY_BUFFER, VBO);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(float) * 9, vertices, GL_STATIC_DRAW);
 
+	unsigned int vertexShader = glCreateShader(GL_VERTEX_SHADER);
+	glShaderSource(vertexShader, 1, &vertexShaderSource, NULL);
 
 	/* Loop until the user closes the window */
 	while (!glfwWindowShouldClose(window))
