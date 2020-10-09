@@ -25,7 +25,7 @@ public:
 		std::ifstream fShaderFile;
 		std::ifstream gShaderFile;
 		// ensure ifstream objects can throw exceptions:
-		vShaderFile.exceptions(std::ifstream::failbit | std::ifstream::badbit);
+		vShaderFile.exceptions(std::ifstream::failbit | std::ios::badbit);
 		fShaderFile.exceptions(std::ifstream::failbit | std::ifstream::badbit);
 		gShaderFile.exceptions(std::ifstream::failbit | std::ifstream::badbit);
 		try
