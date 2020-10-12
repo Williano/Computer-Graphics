@@ -74,6 +74,9 @@ int main(void)
 		return -1;
 	}
 
+	int numberOfVerticesAttributes;
+	glGetIntegerv(GL_MAX_VERTEX_ATTRIBS, &numberOfVerticesAttributes);
+	std::cout << "Maximum number of vertex attributes supported: " << numberOfVerticesAttributes << std::endl;
 
 	int success;
 	char infoLog[512];
