@@ -16,9 +16,10 @@ public:
 
 	// reads and builds the shader
 	Shader(const char* vertexPath, const char* fragmentPath);
-	void CreateShader(unsigned int shaderType, const std::string& shaderSource);
+	void createShader(unsigned int shaderType, const std::string& shaderSource);
 	void deleteShader();
-	void CreateShaderProgram(unsigned int shaderID);
+	void createShaderProgram(unsigned int shaderID);
+	void linkShaderProgram();
 	void useShaderProgram();
 	void deleteShaderProgram();
 
