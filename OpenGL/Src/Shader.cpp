@@ -32,36 +32,68 @@ Shader::Shader(const char* vertexPath, const char* fragmentPath)
 		std::cout << "ERROR::SHADER::FILE_NOT_SUCCESSFULLY_READ" << std::endl;
 	}
 
-	const char* vertexShaderCode = vertexCode.c_str();
-	const char* fragmentShaderCode = fragmentCode.c_str();
+	m_vertexShaderCode = vertexCode.c_str();
+	m_fragmentShaderCode = fragmentCode.c_str();
 
 }
 
 void Shader::CreateShader(unsigned int shaderType, const std::string& shaderSource)
 {
-	unsigned int shaderID;
-	int success;
-	char infoLog[512];
 
 	const char* source = shaderSource.c_str();
 
-	shaderID = glCreateShader(shaderType);
-	glShaderSource(shaderID, 1, &source, NULL);
-	glCompileShader(shaderID);
+	m_shaderID = glCreateShader(shaderType);
+	glShaderSource(m_shaderID, 1, &source, NULL);
+	glCompileShader(m_shaderID);
 
-	glGetShaderiv(shaderID, GL_COMPILE_STATUS, &success);
+	glGetShaderiv(m_shaderID, GL_COMPILE_STATUS, &m_success);
 
-	if (!success)
+	if (!m_success)
 	{
-		glGetShaderInfoLog(shaderID, 512, NULL, infoLog);
-		std::cout << "ERROR::SHADER::COMPILATION FAILED\n" << infoLog << std::endl;
+		glGetShaderInfoLog(m_shaderID, 512, NULL, m_infoLog);
+		std::cout << "ERROR::SHADER::COMPILATION FAILED\n" << m_infoLog << std::endl;
 
 	}
 }
 
-
-
-void Shader::use()
+void Shader::CreateShaderProgram(unsigned int shaderID)
 {
-	glUseProgram(m_shaderID);
+	m_ShaderProgramID = glCreateProgram();
+	glAttachShader(m_ShaderProgramID, shaderID);
+
+	glGetProgramiv(m_ShaderProgramID, GL_LINK_STATUS, &m_success);
+	if (!m_success)
+	{
+		glGetProgramInfoLog(m_ShaderProgramID, 512, NULL, m_infoLog);
+		std::cout << "ERROR::SHADER::PROGRAM::LINKING_FAILED\n" << m_infoLog << std::endl;
+	}
+
+}
+
+void Shader::useShaderProgram()
+{
+	glUseProgram(m_ShaderProgramID);
+}
+
+void Shader::setBool(const std::string& name, bool value) const
+{
+	glUniform1i(glGetUniformLocation(m_ShaderProgramID, name.c_str()), (int)value);
+}
+void Shader::setInt(const std::string& name, int value) const
+{
+	glUniform1i(glGetUniformLocation(m_ShaderProgramID, name.c_str()), value);
+}
+void Shader::setFloat(const std::string& name, float value) const
+{
+	glUniform1f(glGetUniformLocation(m_ShaderProgramID, name.c_str()), value);
+}
+
+void Shader::deleteShader()
+{
+	glDeleteShader(m_shaderID);
+}
+
+void Shader::deleteShaderProgram()
+{
+	glDeleteProgram(m_ShaderProgramID);
 }
