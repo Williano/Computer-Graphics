@@ -21,5 +21,17 @@
     <ClCompile Include="..\..\..\..\Development Resources\GLAD\src\glad.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Src\Shader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Res\Shaders\vertex.shader" />
+    <None Include="Res\Shaders\fragment.shader" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Src\Shader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
