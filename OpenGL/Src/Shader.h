@@ -12,10 +12,14 @@ class Shader {
 
 public:
 	// shader program ID
-	unsigned int shaderID;
+	unsigned int m_shaderID;
 
 	// reads and builds the shader
 	Shader(const char* vertexPath, const char* fragmentPath);
+
+	void CreateShader(unsigned int shaderType, const std::string& shaderSource);
+
+	void CreateShaderProgram();
 
 	// use/activate the shader
 	void use();
