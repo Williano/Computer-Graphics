@@ -8,13 +8,14 @@
 #include <iostream>
 
 
+const int LOG_SIZE = 512;
+
 class Shader {
 
 public:
 
 	// reads and builds the shader
 	Shader(const char* vertexPath, const char* fragmentPath);
-
 	void CreateShader(unsigned int shaderType, const std::string& shaderSource);
 	void deleteShader();
 	void CreateShaderProgram(unsigned int shaderID);
@@ -33,6 +34,6 @@ private:
 	const char* m_fragmentShaderCode;
 	unsigned int m_shaderID;
 	int m_success;
-	char m_infoLog[512];
+	char m_infoLog[LOG_SIZE];
 
 };
