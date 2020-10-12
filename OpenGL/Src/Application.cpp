@@ -11,20 +11,17 @@ const unsigned int SCREEN_HEIGHT = 600;
 const char* vertexShaderSource =
 "#version 330 core\n"
 "layout (location = 0) in vec3 aPos;\n"
-"layout (location = 1) in vec3 aColor;\n"
 "void main()\n"
 "{\n"
 "gl_Position = vec4(aPos.x, aPos.y, aPos.z, 1.0);\n"
-"ourColor = aColor;\n"
 "}\n";
 
 const char* fragmentShaderSource =
 "#version 330 core\n"
 "out vec4 FragColor;\n"
-"in vec3 ourColor\n"
 "void main()\n"
 "{\n"
-"FragColor = vec4(ourColor 1.0f);\n"
+"FragColor = vec4(1.0f, 0.5f, 0.2f, 1.0f);\n"
 "}\n";
 
 
@@ -77,9 +74,12 @@ int main(void)
 		return -1;
 	}
 
+	/*
 	int numberOfVerticesAttributes;
 	glGetIntegerv(GL_MAX_VERTEX_ATTRIBS, &numberOfVerticesAttributes);
 	std::cout << "Maximum number of vertex attributes supported: " << numberOfVerticesAttributes << std::endl;
+	*/
+
 
 	int success;
 	char infoLog[512];
@@ -140,7 +140,7 @@ int main(void)
 	//	 0.0f,  0.5f, 0.0f, 0.0f, 1.0f, 0.0f,  
 	//};
 
-	float vertices[] = {
+	float vertices[12] = {
 
 		0.5f, 0.5f, 0.0f, // Top Right
 		0.5f,-0.5f, 0.0f, // Bottom right
@@ -173,13 +173,13 @@ int main(void)
 
 
 	// Interpret the vertex data to OpenGL before rendering
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)0);
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
 	glEnableVertexAttribArray(0);
 
 
 	// Interpret the color attribute to OpenGL before rendering
-	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(3 * sizeof(float)));
-	glEnableVertexAttribArray(1);
+	//glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(3 * sizeof(float)));
+	//glEnableVertexAttribArray(1);
 
 
 	// Unselect the Vertex Array Object
