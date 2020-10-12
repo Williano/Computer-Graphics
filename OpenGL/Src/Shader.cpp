@@ -38,7 +38,7 @@ Shader::Shader(const char* vertexPath, const char* fragmentPath)
 }
 
 
-void Shader::CreateShader(unsigned int shaderType, const std::string& shaderSource)
+void Shader::createShader(unsigned int shaderType, const std::string& shaderSource)
 {
 
 	const char* source = shaderSource.c_str();
@@ -58,7 +58,7 @@ void Shader::CreateShader(unsigned int shaderType, const std::string& shaderSour
 }
 
 
-void Shader::CreateShaderProgram(unsigned int shaderID)
+void Shader::createShaderProgram(unsigned int shaderID)
 {
 	m_ShaderProgramID = glCreateProgram();
 	glAttachShader(m_ShaderProgramID, shaderID);
@@ -70,6 +70,12 @@ void Shader::CreateShaderProgram(unsigned int shaderID)
 		std::cout << "ERROR::SHADER::PROGRAM::LINKING_FAILED\n" << m_infoLog << std::endl;
 	}
 
+}
+
+
+void Shader::linkShaderProgram()
+{
+	glLinkProgram(m_ShaderProgramID);
 }
 
 
